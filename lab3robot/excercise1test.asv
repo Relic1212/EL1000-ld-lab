@@ -36,16 +36,14 @@ G3 = tf(Ktau,s);
 G = tf(s*s +746 + 1/s + 12*s,s+ 7 + 12/s );
 % n1=1;
 % d1=s*
-G4=tf(Ktau,(s*Lm+Rm)*(J*s+b));
-G5=tf(1,(s*Lm+Rm)*(J*s+b));
-
+G4=tf(Ktau,()*(J*s))
 % numerator = 1;
 % denominator =  [2,3,4];
 % sys = tf(numerator,denominator);
 disp(G)
 lab3robot(G1,PersonalNumber)
-lab3robot(G4,PersonalNumber)
-lab3robot(G5,PersonalNumber)
+lab3robot(G2,PersonalNumber)
+lab3robot(G3,PersonalNumber)
 
 % disp(umax)
 
