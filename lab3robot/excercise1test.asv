@@ -30,20 +30,49 @@ n = 1/20; % Gearing factor
 PersonalNumber = 010205; % YYMMDD 
 [J,umax] = lab3robot(PersonalNumber);
 % G1 = @(s) s*s;
-G1=tf(Ktau,s*Lm+Rm);
-G2 = tf (Ktau,J*s+b);
-G3 = tf(Ktau,s);
-G = tf(s*s +746 + 1/s + 12*s,s+ 7 + 12/s );
+s=tf('s');
+G1=(Ktau/(s*Lm+Rm));
+G2 =  (Ktau/(J*s+b));
+G3 = (Ktau/s);
+G = ((s*s +746 + 1/s + 12*s)/(s+ 7 + 12/s) );
 % n1=1;
 % d1=s*
-G4=tf(Ktau,()*(J*s))
+% d1=s*
+% end_factor=n/s;
+end_factor=s/n;
+% end_factor=1;
+Km = 1;
+G4=(Ktau/((s*Lm+Rm)*(J*s+b)));
+G5=(1/((s*Lm+Rm)*(J*s+b)));
+G6 = (1/s*Lm + Rm )*(Ktau)*(1/J*s+b)/(1+ ( (1/s*Lm + Rm )*(Ktau)*(1/J*s+b) ) * (-Km) )*end_factor;
+G7 = (1/s*Lm + Rm )*(Ktau)*(1/J*s+b)/(1+ ( (1/s*Lm + Rm )*(Ktau)*(1/J*s+b) ) * (Km) )*end_factor;
+G8 = (1/s*Lm + Rm )*(1/J*s+b)/(1+ ( (1/s*Lm + Rm )*(1/J*s+b) ) * (-Km) )*end_factor;
+G9 = (1/s*Lm + Rm )*(1/J*s+b)/(1+ ( (1/s*Lm + Rm )*(1/J*s+b) ) * (Km) )*end_factor;
+
+G10 = (1/s*Lm + Rm )*(Ktau)*(1/J*s+b)/(1- ( (1/s*Lm + Rm )*(Ktau)*(1/J*s+b) ) * (-Km) )*end_factor;
+G11 = (1/s*Lm + Rm )*(Ktau)*(1/J*s+b)/(1- ( (1/s*Lm + Rm )*(Ktau)*(1/J*s+b) ) * (Km) )*end_factor;
+G12 = (1/s*Lm + Rm )*(1/J*s+b)/(1- ( (1/s*Lm + Rm )*(1/J*s+b) ) * (-Km) )*end_factor;
+G13 = (1/s*Lm + Rm )*(1/J*s+b)/(1- ( (1/s*Lm + Rm )*(1/J*s+b) ) * (Km) )*end_factor;
+G14 = ( ( (1/s*Lm + Rm)*Kr *1/(J*s+b) )/( 1 + (-Km)* ( (1/s*Lm + Rm)*Kr *1/(J*s+b) )  ) ) * (1/s) *n;
 % numerator = 1;
 % denominator =  [2,3,4];
 % sys = tf(numerator,denominator);
-disp(G)
-lab3robot(G1,PersonalNumber)
-lab3robot(G2,PersonalNumber)
-lab3robot(G3,PersonalNumber)
+disp(G6)
+% lab3robot(G1,PersonalNumber)
+% lab3robot(G2,PersonalNumber)
+% lab3robot(G3,PersonalNumber)
+
+% lab3robot(G4,PersonalNumber)
+% lab3robot(G5,PersonalNumber)
+lab3robot(G6,PersonalNumber)
+lab3robot(G7,PersonalNumber)
+lab3robot(G8,PersonalNumber)
+lab3robot(G9,PersonalNumber)
+lab3robot(G10,PersonalNumber)
+lab3robot(G11,PersonalNumber)
+lab3robot(G12,PersonalNumber)
+lab3robot(G13,PersonalNumber)
+
 
 % disp(umax)
 
